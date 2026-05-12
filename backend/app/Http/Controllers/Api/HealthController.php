@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\JsonResponse;
-
 class HealthController
 {
-    public function __invoke(): JsonResponse
+    public function __invoke(): array
     {
-        return response()->json([
+        return [
             'status' => 'ok',
             'service' => 'backend',
-        ]);
+        ];
     }
 }

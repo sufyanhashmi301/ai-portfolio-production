@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+$host = '0.0.0.0';
+$port = '8000';
+
+$args = $argv;
+if (($args[1] ?? null) === 'serve') {
+    foreach ($args as $arg) {
+        if (str_starts_with($arg, '--host=')) {
+            $host = substr($arg, 7);
+        }
+        if (str_starts_with($arg, '--port=')) {
+            $port = substr($arg, 7);
+        }
+    }
+
+    passthru(sprintf('php -S %s:%s -t public public/router.php', $host, $port));
+    exit(0);
+}
+
+echo "Minimal artisan supports: php artisan serve\n";
+exit(0);
